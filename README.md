@@ -1,6 +1,6 @@
 # Base Mini Audio App
 
-A beautiful, modern music streaming application built on Base blockchain with Web3 wallet integration and points rewards system.
+A decentralized music streaming platform built on Base blockchain, integrating Web3 wallet connectivity for seamless user authentication and transaction capabilities. The platform implements a gamified rewards system, distributing points based on listening duration (1 point per 5 minutes) with real-time tracking and visual feedback mechanisms. Built with Next.js and responsive architecture, featuring an intuitive music player interface, comprehensive playback controls, advanced search functionality, and a modern glass-morphism design system optimized for both mobile and desktop environments.
 
 ## Features
 

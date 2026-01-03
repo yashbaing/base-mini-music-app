@@ -18,11 +18,13 @@ export function usePoints() {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       try {
-        // Clear all existing points to start fresh with new system
-        localStorage.removeItem(STORAGE_KEY);
-        setPoints([]);
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (stored) {
+          const parsed = JSON.parse(stored);
+          setPoints(Array.isArray(parsed) ? parsed : []);
+        }
       } catch (error) {
-        console.error('Error clearing points:', error);
+        console.error('Error loading points:', error);
       }
     }
   }, []);
