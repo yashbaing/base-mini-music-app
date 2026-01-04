@@ -33,7 +33,7 @@ export async function GET() {
     webhookUrl: process.env.FARCASTER_WEBHOOK_URL || `${URL}/api/webhook`,
     subtitle: 'Shivaji Maharaj Music',
     description: 'Music player honoring the legacy of Chhatrapati Shivaji Maharaj with Base blockchain integration. Stream music, earn points, and connect with Web3.',
-    screenshotUrls: [],
+    screenshotUrls: [imageUrl],
     primaryCategory: 'music',
     tags: ['music', 'miniapp', 'baseapp', 'web3', 'blockchain'],
     heroImageUrl: imageUrl,
