@@ -5,7 +5,6 @@ import { MusicPlayer } from '@/components/MusicPlayer';
 import { TrackList } from '@/components/TrackList';
 import { SearchBar } from '@/components/SearchBar';
 import { PointsDisplay } from '@/components/PointsDisplay';
-import { PointEarnedNotification } from '@/components/PointEarnedNotification';
 import { usePlaylist } from '@/hooks/usePlaylist';
 import { usePlayHistory } from '@/hooks/usePlayHistory';
 import { usePoints } from '@/hooks/usePoints';
@@ -27,8 +26,6 @@ function HomeContent() {
     return isConnected && address ? getPoints(address) : 0;
   }, [isConnected, address, getPoints, pointsState]);
   const [searchQuery, setSearchQuery] = useState('');
-  const [showPointNotification, setShowPointNotification] = useState(false);
-  const prevPointsRef = useRef(userPoints);
   const playTimeRef = useRef<{ startTime: number; lastSaveTime: number; trackId: string | null }>({
     startTime: 0,
     lastSaveTime: 0,
@@ -111,16 +108,6 @@ function HomeContent() {
     return () => clearInterval(interval);
   }, [currentTrack, isPlaying, allTracks, isConnected, address, updatePlayHistory, addPlayHistory, addPoints]);
 
-  // Show notification when points increase
-  useEffect(() => {
-    if (isConnected && address && userPoints > prevPointsRef.current) {
-      setShowPointNotification(true);
-      prevPointsRef.current = userPoints;
-    } else if (userPoints !== prevPointsRef.current) {
-      prevPointsRef.current = userPoints;
-    }
-  }, [userPoints, isConnected, address]);
-
   // Save play history and points when component unmounts
   useEffect(() => {
     return () => {
@@ -167,13 +154,7 @@ function HomeContent() {
   };
 
   return (
-    <>
-      <PointEarnedNotification
-        show={showPointNotification}
-        onClose={() => setShowPointNotification(false)}
-        points={userPoints}
-      />
-      <main className="min-h-screen pb-16 sm:pb-20">
+    <main className="min-h-screen pb-16 sm:pb-20">
         <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-3 sm:py-4 md:py-6 lg:py-8">
         {/* Header */}
         <header className="mb-4 sm:mb-5 md:mb-6">
@@ -260,8 +241,7 @@ function HomeContent() {
           </div>
         </div>
       )}
-      </main>
-    </>
+    </main>
   );
 }
 
