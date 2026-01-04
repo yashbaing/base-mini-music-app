@@ -12,6 +12,7 @@ import { useWallet } from '@/hooks/useWallet';
 import { AudioPlayerProvider, useAudioPlayerContext } from '@/contexts/AudioPlayerContext';
 import { Play, Music2 } from 'lucide-react';
 import { useState, useMemo, useEffect, useRef } from 'react';
+import { sdk } from '@farcaster/miniapp-sdk';
 import type { Track } from '@/types';
 
 function HomeContent() {
@@ -34,6 +35,11 @@ function HomeContent() {
 
   // Get all tracks from all playlists combined
   const allTracks: Track[] = playlists.flatMap(playlist => playlist.tracks);
+
+  // Initialize Farcaster miniapp SDK
+  useEffect(() => {
+    sdk.actions.ready();
+  }, []);
 
   // Track play time for history and points - save every 5 seconds
   useEffect(() => {
