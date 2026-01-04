@@ -18,32 +18,42 @@ export async function GET() {
   const accountAssociationPayload = process.env.FARCASTER_ACCOUNT_ASSOCIATION_PAYLOAD || 'eyJkb21haW4iOiJiYXNlLW1pbmktbXVzaWMtYXBwLnZlcmNlbC5hcHAifQ';
   const accountAssociationSignature = process.env.FARCASTER_ACCOUNT_ASSOCIATION_SIGNATURE || 'yhuV8w//TF1X06KeLjr3OEf7UC1KmMoVzu/c7Rc0zyspKCUg8ZczUMb8H+Tf9DD47X8eseNwCc/IxhIspzoP2Bw=';
   
+  // URL encode image filename to handle spaces
+  const imageUrl = `${URL}/images/${encodeURIComponent('Ninad Bedekar Sir.png')}`;
+  
+  const miniappConfig: Record<string, any> = {
+    version: '1',
+    name: 'Maratha Music',
+    homeUrl: URL,
+    iconUrl: imageUrl,
+    splashImageUrl: imageUrl,
+    splashBackgroundColor: '#0a0a0a',
+    subtitle: 'Shivaji Maharaj Music',
+    description: 'Music player honoring the legacy of Chhatrapati Shivaji Maharaj with Base blockchain integration. Stream music, earn points, and connect with Web3.',
+    screenshotUrls: [],
+    primaryCategory: 'music',
+    tags: ['music', 'miniapp', 'baseapp', 'web3', 'blockchain'],
+    heroImageUrl: imageUrl,
+    tagline: 'Stream and earn',
+    ogTitle: 'Maratha Music',
+    ogDescription: 'Music player honoring the legacy of Chhatrapati Shivaji Maharaj with Base blockchain integration',
+    ogImageUrl: imageUrl,
+    noindex: false,
+  };
+  
+  // Only include webhookUrl if it's a valid HTTPS URL
+  const webhookUrl = process.env.FARCASTER_WEBHOOK_URL || '';
+  if (webhookUrl && webhookUrl.startsWith('https://')) {
+    miniappConfig.webhookUrl = webhookUrl;
+  }
+  
   const manifestJsonObject = withValidProperties({
     accountAssociation: {
       header: accountAssociationHeader,
       payload: accountAssociationPayload,
       signature: accountAssociationSignature,
     },
-    miniapp: {
-      version: '1',
-      name: 'Maratha Music',
-      homeUrl: URL,
-      iconUrl: `${URL}/images/Ninad Bedekar Sir.png`,
-      splashImageUrl: `${URL}/images/Ninad Bedekar Sir.png`,
-      splashBackgroundColor: '#0a0a0a',
-      webhookUrl: '',
-      subtitle: 'Chhatrapati Shivaji Maharaj\'s Musical Legacy',
-      description: 'Music player honoring the legacy of Chhatrapati Shivaji Maharaj with Base blockchain integration. Stream music, earn points, and connect with Web3.',
-      screenshotUrls: [],
-      primaryCategory: 'music',
-      tags: ['music', 'miniapp', 'baseapp', 'web3', 'blockchain'],
-      heroImageUrl: `${URL}/images/Ninad Bedekar Sir.png`,
-      tagline: 'Stream and earn',
-      ogTitle: 'Maratha Music - Chhatrapati Shivaji Maharaj',
-      ogDescription: 'Music player honoring the legacy of Chhatrapati Shivaji Maharaj with Base blockchain integration',
-      ogImageUrl: `${URL}/images/Ninad Bedekar Sir.png`,
-      noindex: false,
-    },
+    miniapp: miniappConfig,
   });
 
   return Response.json(manifestJsonObject);
