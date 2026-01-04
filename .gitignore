@@ -13,6 +13,9 @@ node_modules/
 # Production
 /build
 
+# Audio files (too large for GitHub)
+public/audio/*.mp3
+
 # Misc
 .DS_Store
 *.pem
