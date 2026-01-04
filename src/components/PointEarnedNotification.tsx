@@ -63,3 +63,4 @@ export function PointEarnedNotification({ show, onClose, points }: PointEarnedNo
   );
 }
 
+

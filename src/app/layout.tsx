@@ -8,6 +8,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: " Chhatrapati Shivaji Maharaj",
   description: "Music player honoring the legacy of Chhatrapati Shivaji Maharaj with Base blockchain integration",
+  other: {
+    'base:app_id': '695ab859c63ad876c90820ce',
+  },
 };
 
 export default function RootLayout({
