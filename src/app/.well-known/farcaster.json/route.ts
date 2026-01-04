@@ -21,7 +21,7 @@ export async function GET() {
   const accountAssociationSignature = process.env.FARCASTER_ACCOUNT_ASSOCIATION_SIGNATURE || 'yhuV8w//TF1X06KeLjr3OEf7UC1KmMoVzu/c7Rc0zyspKCUg8ZczUMb8H+Tf9DD47X8eseNwCc/IxhIspzoP2Bw=';
   
   // URL encode image filename to handle spaces
-  const imageUrl = `${URL}/images/${encodeURIComponent('Ninad Bedekar Sir.png')}`;
+  const imageUrl = `${URL}/images/${encodeURIComponent('shivaji maharaj.jpeg')}`;
   
   const miniappConfig: Record<string, any> = {
     version: '1',
