@@ -12,7 +12,7 @@ function withValidProperties(properties: Record<string, undefined | string | str
 }
 
 export async function GET() {
-  const URL = process.env.NEXT_PUBLIC_URL || 'https://your-domain.com';
+  const URL = process.env.NEXT_PUBLIC_URL || 'https://base-mini-music-app.vercel.app';
   
   // Account association fields - Generated from Base Build
   // Can be overridden via environment variables if needed

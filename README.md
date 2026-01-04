@@ -46,6 +46,8 @@ npm run dev
 
 4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
+**Live Demo**: [https://base-mini-music-app.vercel.app/](https://base-mini-music-app.vercel.app/)
+
 ## Features in Detail
 
 ### Points System
