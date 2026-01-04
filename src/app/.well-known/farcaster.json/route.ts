@@ -12,11 +12,17 @@ function withValidProperties(properties: Record<string, undefined | string | str
 export async function GET() {
   const URL = process.env.NEXT_PUBLIC_URL || 'https://your-domain.com';
   
+  // Account association fields - Generate these from Base Build and set as environment variables
+  // Navigate to Base Build Account association tool, paste your domain, and generate these values
+  const accountAssociationHeader = process.env.FARCASTER_ACCOUNT_ASSOCIATION_HEADER || '';
+  const accountAssociationPayload = process.env.FARCASTER_ACCOUNT_ASSOCIATION_PAYLOAD || '';
+  const accountAssociationSignature = process.env.FARCASTER_ACCOUNT_ASSOCIATION_SIGNATURE || '';
+  
   const manifestJsonObject = withValidProperties({
     accountAssociation: {
-      header: '',
-      payload: '',
-      signature: '',
+      header: accountAssociationHeader,
+      payload: accountAssociationPayload,
+      signature: accountAssociationSignature,
     },
     miniapp: {
       version: '1',
