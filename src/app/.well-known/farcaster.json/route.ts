@@ -1,9 +1,11 @@
-function withValidProperties(properties: Record<string, undefined | string | string[] | object>) {
+function withValidProperties(properties: Record<string, undefined | string | string[] | object | boolean>) {
   return Object.fromEntries(
     Object.entries(properties).filter(([_, value]) => {
       if (value === null || value === undefined) return false;
-      if (Array.isArray(value)) return value.length > 0;
+      // Allow empty arrays for screenshotUrls
+      if (Array.isArray(value)) return true;
       if (typeof value === 'object') return Object.keys(value).length > 0;
+      if (typeof value === 'boolean') return true;
       return !!value;
     })
   );
@@ -28,6 +30,7 @@ export async function GET() {
     iconUrl: imageUrl,
     splashImageUrl: imageUrl,
     splashBackgroundColor: '#0a0a0a',
+    webhookUrl: process.env.FARCASTER_WEBHOOK_URL || `${URL}/api/webhook`,
     subtitle: 'Shivaji Maharaj Music',
     description: 'Music player honoring the legacy of Chhatrapati Shivaji Maharaj with Base blockchain integration. Stream music, earn points, and connect with Web3.',
     screenshotUrls: [],
@@ -38,14 +41,8 @@ export async function GET() {
     ogTitle: 'Maratha Music',
     ogDescription: 'Music player honoring the legacy of Chhatrapati Shivaji Maharaj with Base blockchain integration',
     ogImageUrl: imageUrl,
-    noindex: false,
+    noindex: true,
   };
-  
-  // Only include webhookUrl if it's a valid HTTPS URL
-  const webhookUrl = process.env.FARCASTER_WEBHOOK_URL || '';
-  if (webhookUrl && webhookUrl.startsWith('https://')) {
-    miniappConfig.webhookUrl = webhookUrl;
-  }
   
   const manifestJsonObject = withValidProperties({
     accountAssociation: {
