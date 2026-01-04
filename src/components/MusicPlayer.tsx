@@ -86,108 +86,108 @@ export function MusicPlayer() {
               <span className="text-orange-400 text-[10px] sm:text-xs font-medium">Now Playing</span>
             </div>
           )}
-        </div>
+      </div>
 
-        {/* Progress Bar */}
+      {/* Progress Bar */}
         <div className="w-full">
           <div className="flex items-center gap-2 mb-1">
             <span className="text-[10px] sm:text-xs text-gray-400 w-10 text-right flex-shrink-0">{formatTime(currentTime)}</span>
-            <div className="flex-1 relative">
+          <div className="flex-1 relative">
               <div className="h-1.5 sm:h-2 bg-gray-700/30 rounded-full overflow-hidden">
-                <div
+              <div
                   className="h-full bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-500 transition-all duration-100 rounded-full"
-                  style={{ width: `${progressPercentage}%` }}
-                />
-              </div>
-              <input
-                type="range"
-                min="0"
-                max={duration || 0}
-                value={currentTime}
-                onChange={(e) => seek(Number(e.target.value))}
-                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer touch-none"
+                style={{ width: `${progressPercentage}%` }}
               />
             </div>
-            <span className="text-[10px] sm:text-xs text-gray-400 w-10 flex-shrink-0">{formatTime(duration)}</span>
+            <input
+              type="range"
+              min="0"
+              max={duration || 0}
+              value={currentTime}
+              onChange={(e) => seek(Number(e.target.value))}
+                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer touch-none"
+            />
           </div>
+            <span className="text-[10px] sm:text-xs text-gray-400 w-10 flex-shrink-0">{formatTime(duration)}</span>
         </div>
+      </div>
 
         {/* Controls - Grid Layout */}
         <div className="w-full">
           {/* Main Playback Controls */}
           <div className="flex items-center justify-center gap-2 sm:gap-3 mb-2">
-            <button
-              onClick={toggleShuffle}
+          <button
+            onClick={toggleShuffle}
               className={`p-2 sm:p-2.5 rounded-full transition-all active:scale-95 touch-manipulation ${
                 shuffle ? 'text-orange-400 bg-white/15' : 'text-gray-400 hover:text-white hover:bg-white/10'
-              }`}
+            }`}
               aria-label={shuffle ? 'Disable shuffle' : 'Enable shuffle'}
-            >
+          >
               <Shuffle size={16} className="sm:w-5 sm:h-5" />
-            </button>
-            <button
-              onClick={previous}
+          </button>
+          <button
+            onClick={previous}
               className="p-2 sm:p-2.5 rounded-full text-white hover:bg-white/15 active:bg-white/20 active:scale-95 transition-all touch-manipulation"
               aria-label="Previous track"
-            >
+          >
               <SkipBack size={18} fill="currentColor" className="sm:w-6 sm:h-6" />
-            </button>
-            <button
-              onClick={togglePlayPause}
+          </button>
+          <button
+            onClick={togglePlayPause}
               className="p-3 sm:p-4 rounded-full bg-gradient-to-r from-orange-600 to-amber-600 text-white hover:from-orange-500 hover:to-amber-500 active:scale-95 transition-all shadow-xl shadow-orange-500/30 touch-manipulation"
               aria-label={isPlaying ? 'Pause' : 'Play'}
-            >
+          >
               {isPlaying ? (
                 <Pause size={20} fill="currentColor" className="sm:w-7 sm:h-7" />
               ) : (
                 <Play size={20} fill="currentColor" className="sm:w-7 sm:h-7 ml-0.5" />
               )}
-            </button>
-            <button
-              onClick={next}
+          </button>
+          <button
+            onClick={next}
               className="p-2 sm:p-2.5 rounded-full text-white hover:bg-white/15 active:bg-white/20 active:scale-95 transition-all touch-manipulation"
               aria-label="Next track"
-            >
+          >
               <SkipForward size={18} fill="currentColor" className="sm:w-6 sm:h-6" />
-            </button>
-            <button
-              onClick={toggleRepeat}
+          </button>
+          <button
+            onClick={toggleRepeat}
               className={`p-2 sm:p-2.5 rounded-full transition-all active:scale-95 touch-manipulation ${
                 repeat !== 'none' ? 'text-orange-400 bg-white/15' : 'text-gray-400 hover:text-white hover:bg-white/10'
-              }`}
+            }`}
               aria-label={`Repeat: ${repeat}`}
-            >
+          >
               <Repeat size={16} className={`sm:w-5 sm:h-5 ${repeat === 'one' ? 'fill-current' : ''}`} />
-            </button>
-          </div>
+          </button>
+        </div>
 
-          {/* Volume Control */}
+        {/* Volume Control */}
           <div className="flex items-center justify-center gap-2">
-            <button
+          <button
               onClick={() => setShowVolume(!showVolume)}
               onMouseEnter={() => setShowVolume(true)}
               className="p-2 rounded-full text-gray-400 hover:text-white hover:bg-white/10 active:scale-95 transition-all touch-manipulation"
               aria-label={volume > 0 ? 'Mute' : 'Unmute'}
             >
               {getVolumeIcon()}
-            </button>
+          </button>
             <div className="relative group flex-1 max-w-[120px] sm:max-w-[150px]">
               <div className="h-1.5 bg-gray-700/50 rounded-full">
-                <div
+              <div
                   className="h-full bg-gradient-to-r from-orange-500 to-amber-500 transition-all rounded-full"
-                  style={{ width: `${volume * 100}%` }}
-                />
-              </div>
-              <input
-                type="range"
-                min="0"
-                max="1"
-                step="0.01"
-                value={volume}
-                onChange={(e) => setVolume(Number(e.target.value))}
+                style={{ width: `${volume * 100}%` }}
+              />
+            </div>
+            <input
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              value={volume}
+              onChange={(e) => setVolume(Number(e.target.value))}
                 className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                 aria-label="Volume"
-              />
+            />
             </div>
           </div>
         </div>
