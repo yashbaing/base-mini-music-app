@@ -12,11 +12,11 @@ function withValidProperties(properties: Record<string, undefined | string | str
 export async function GET() {
   const URL = process.env.NEXT_PUBLIC_URL || 'https://your-domain.com';
   
-  // Account association fields - Generate these from Base Build and set as environment variables
-  // Navigate to Base Build Account association tool, paste your domain, and generate these values
-  const accountAssociationHeader = process.env.FARCASTER_ACCOUNT_ASSOCIATION_HEADER || '';
-  const accountAssociationPayload = process.env.FARCASTER_ACCOUNT_ASSOCIATION_PAYLOAD || '';
-  const accountAssociationSignature = process.env.FARCASTER_ACCOUNT_ASSOCIATION_SIGNATURE || '';
+  // Account association fields - Generated from Base Build
+  // Can be overridden via environment variables if needed
+  const accountAssociationHeader = process.env.FARCASTER_ACCOUNT_ASSOCIATION_HEADER || 'eyJmaWQiOjE0MDAwNTQsInR5cGUiOiJjdXN0b2R5Iiwia2V5IjoiMHhFQjM2MWVjY0M5RmYxNWY5N0Q1Njg1NzM2ODQyNDY4QWRDZDE3ZDM3In0';
+  const accountAssociationPayload = process.env.FARCASTER_ACCOUNT_ASSOCIATION_PAYLOAD || 'eyJkb21haW4iOiJiYXNlLW1pbmktbXVzaWMtYXBwLnZlcmNlbC5hcHAifQ';
+  const accountAssociationSignature = process.env.FARCASTER_ACCOUNT_ASSOCIATION_SIGNATURE || 'yhuV8w//TF1X06KeLjr3OEf7UC1KmMoVzu/c7Rc0zyspKCUg8ZczUMb8H+Tf9DD47X8eseNwCc/IxhIspzoP2Bw=';
   
   const manifestJsonObject = withValidProperties({
     accountAssociation: {
