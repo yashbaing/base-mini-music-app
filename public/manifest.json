@@ -1,6 +1,6 @@
 {
-  "name": "Maratha Music - Chhatrapati Shivaji Maharaj",
-  "short_name": "Maratha Music",
+  "name": "Shivcharitra by Ninad Bedekar Sir",
+  "short_name": "Shivcharitra",
   "description": "Music player honoring the legacy of Chhatrapati Shivaji Maharaj with Base blockchain integration",
   "start_url": "/",
   "display": "standalone",
@@ -22,4 +22,7 @@
     }
   ]
 }
+
+
+
 

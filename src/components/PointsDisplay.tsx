@@ -41,7 +41,7 @@ export function PointsDisplay({ points, walletAddress }: PointsDisplayProps) {
   if (!walletAddress) return null;
 
   return (
-    <div className={`glass px-5 sm:px-6 py-2.5 rounded-full font-medium text-white flex items-center justify-center gap-2 w-full sm:w-auto transition-all duration-300 relative ${
+    <div className={`glass px-5 sm:px-6 py-3 sm:py-2.5 rounded-full font-medium text-white flex items-center justify-center gap-2 w-full sm:w-auto transition-all duration-300 relative min-h-[44px] sm:min-h-0 ${
       isBlinking ? 'scale-105' : ''
     }`}>
       {/* Round light animation - only when blinking */}
@@ -58,8 +58,8 @@ export function PointsDisplay({ points, walletAddress }: PointsDisplayProps) {
       
       {/* Content */}
       <div className="relative flex items-center gap-2">
-        <Coins size={16} className={`sm:w-[18px] sm:h-[18px] transition-all duration-300 ${isBlinking ? 'text-yellow-300 scale-110 drop-shadow-[0_0_8px_rgba(255,215,0,0.8)]' : ''}`} />
-        <span className={`text-sm sm:text-base transition-all duration-300 ${isBlinking ? 'font-bold text-yellow-100' : ''}`}>
+        <Coins size={18} className={`sm:w-[18px] sm:h-[18px] transition-all duration-300 ${isBlinking ? 'text-yellow-300 scale-110 drop-shadow-[0_0_8px_rgba(255,215,0,0.8)]' : ''}`} />
+        <span className={`text-base sm:text-base transition-all duration-300 ${isBlinking ? 'font-bold text-yellow-100' : ''}`}>
           {points.toLocaleString()} Point{points !== 1 ? 's' : ''}
         </span>
       </div>

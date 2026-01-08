@@ -25,7 +25,7 @@ export async function GET() {
   
   const miniappConfig: Record<string, any> = {
     version: '1',
-    name: 'Maratha Music',
+    name: 'Shivcharitra by Ninad Bedekar Sir',
     homeUrl: URL,
     iconUrl: imageUrl,
     splashImageUrl: imageUrl,
@@ -38,7 +38,7 @@ export async function GET() {
     tags: ['music', 'miniapp', 'baseapp', 'web3', 'blockchain'],
     heroImageUrl: imageUrl,
     tagline: 'Stream and earn',
-    ogTitle: 'Maratha Music',
+    ogTitle: 'Shivcharitra',
     ogDescription: 'Music player honoring the legacy of Chhatrapati Shivaji Maharaj with Base blockchain integration',
     ogImageUrl: imageUrl,
     noindex: true,
