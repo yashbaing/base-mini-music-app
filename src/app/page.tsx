@@ -237,6 +237,18 @@ function HomeContent() {
             </div>
           </div>
         )}
+
+        {/* Feedback Link - Bottom */}
+        <div className="mt-8 sm:mt-10 text-center">
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLScdW4dz3h_DFMfmKEadslMGrZIKVj9KpNzjpay2wsoJLUaEGQ/viewform?usp=header"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-400 hover:text-orange-400 text-sm transition-colors duration-200"
+          >
+            Feedback & Help
+          </a>
+        </div>
       </div>
 
       {/* Popup Music Player Modal */}
